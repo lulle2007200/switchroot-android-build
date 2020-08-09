@@ -5,8 +5,12 @@ cd ${BUILDBASE}
 if [ "$(ls -A ./android/lineage)" ]; then
     echo "Sources found. Skipping..."
 else
-    echo "Getting sources..."
-    ./get-sources.sh
+    if [[ -z $DUMMY_BUILD ]]; then
+        echo "Getting sources..."
+        ./get-sources.sh
+    else
+        echo Dummy executed get-sources.sh
+    fi
 fi
 
 if [[ -z $FLAGS || ! -z ${FLAGS##*noupdate*} ]]; then
