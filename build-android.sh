@@ -1,14 +1,18 @@
 #!/bin/bash
 
-## This script creates the build image locally and builds Android
+## This script creates the build image locally and builds Android.
+##
 ## Possible parameters:
 ##  --rom: rom to build. Possible values: icosa | foster | foster_tab
 ##  --rom-type: build output. Possible values: zip | images
 ##  --flags: flags to pass to the build script. Possible values: string that contains:
-##      - nobuild: avoids running the build process
-##      - noupdate: avoids running the sources update process
-##      - nooutput: avoids copying the build to the output directory
-##      - with_twrp: builds twrp after a successfull pie build and copies it to the output directory
+##      - nobuild: avoids running the build process.
+##      - noupdate: avoids running the sources update process.
+##      - nooutput: avoids copying the build to the output directory.
+##      - with_twrp: builds TWRP after a successful Android build and copies it to the output directory
+##
+## If the ENV variable DUMMY_BUILD has some non-empty value, the actual execution of scripts 
+## will be replaced with dummy messages. Used to quickly test the other parameters.
 
 while (($# > 0))
     do
@@ -56,4 +60,4 @@ done
 
 ./create-image.sh
 
-ROM_NAME=${ROM_NAME:-icosa} ROM_TYPE=${ROM_TYPE:-zip} FLAGS=${FLAGS:-""} ./build-in-docker.sh
+DUMMY_BUILD=${DUMMY_BUILD:-""} ROM_NAME=${ROM_NAME:-icosa} ROM_TYPE=${ROM_TYPE:-zip} FLAGS=${FLAGS:-""} ./build-in-docker.sh

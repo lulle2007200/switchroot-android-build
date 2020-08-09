@@ -25,4 +25,4 @@ mkdir -p ./android/lineage
 echo Building $ROM_NAME
 
 BUILDBASE="/build"
-docker run --rm -ti -e ROM_NAME=$ROM_NAME -e ROM_TYPE=$ROM_TYPE -e FLAGS=${FLAGS:-""} -v "$PWD"/android:${BUILDBASE}/android pablozaiden/switchroot-android-build
+docker run --rm -ti -e DUMMY_BUILD=${DUMMY_BUILD:-""} -e ROM_NAME=$ROM_NAME -e ROM_TYPE=$ROM_TYPE -e FLAGS=${FLAGS:-""} -v "$PWD"/android:${BUILDBASE}/android pablozaiden/switchroot-android-build
